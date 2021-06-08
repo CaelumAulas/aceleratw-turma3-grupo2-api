@@ -1,4 +1,4 @@
-package com.alura.ProjetoAcelera;
+package com.alura.ProjetoAcelera.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
