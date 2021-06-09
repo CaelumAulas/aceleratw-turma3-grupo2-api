@@ -5,11 +5,11 @@ import com.alura.ProjetoAcelera.models.Brand;
 import com.alura.ProjetoAcelera.repository.BrandRepository;
 import com.sun.istack.NotNull;
 
-import javax.validation.constraints.NotEmpty;
+
 
 public class BrandForm {
     @NotNull
-    @NotEmpty
+
     private String name;
 
     public void setName(String name) {

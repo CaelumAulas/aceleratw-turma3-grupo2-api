@@ -1,4 +1,4 @@
-package com.alura.ProjetoAcelera.controller;
+package com.alura.ProjetoAcelera;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
