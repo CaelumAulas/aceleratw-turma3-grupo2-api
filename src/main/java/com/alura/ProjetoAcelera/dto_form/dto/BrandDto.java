@@ -1,7 +1,8 @@
 package com.alura.ProjetoAcelera.dto_form.dto;
 
-import com.alura.ProjetoAcelera.models.Brand;
 import org.springframework.data.domain.Page;
+
+import com.alura.ProjetoAcelera.models.Brand;
 
 public class BrandDto {
     private Long id;
@@ -20,7 +21,7 @@ public class BrandDto {
         return name;
     }
 
-    public static Page<BrandDto> convert(Page<Brand> topicos) {
-        return topicos.map(BrandDto::new);
+    public static Page<BrandDto> convert(Page<Brand> brands) {
+        return brands.map(BrandDto::new);
     }
 }
