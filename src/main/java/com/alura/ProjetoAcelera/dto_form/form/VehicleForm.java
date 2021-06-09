@@ -1,4 +1,4 @@
-package com.alura.ProjetoAcelera.dto_form;
+package com.alura.ProjetoAcelera.dto_form.form;
 
 import com.alura.ProjetoAcelera.models.Brand;
 import com.alura.ProjetoAcelera.models.Vehicle;

@@ -1,10 +1,10 @@
 package com.alura.ProjetoAcelera.repository;
 
-import com.alura.ProjetoAcelera.models.Brand;
+import com.alura.ProjetoAcelera.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BrandRepository extends JpaRepository<Brand, Long> {
-    Page<Brand> findByName(String name, Pageable pages);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Page<User> findByName(String name, Pageable pages);
 }

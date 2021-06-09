@@ -18,7 +18,7 @@ public class BrandForm {
         return new Brand(name);
     }
 
-    public Brand update(Integer id, BrandRepository brandRepository) {
+    public Brand update(Long id, BrandRepository brandRepository) {
         Brand brand = brandRepository.getById(id);
         brand.setName(this.name);
         return brand;

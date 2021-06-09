@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.alura.ProjetoAcelera.dto_form.VehicleForm;
+import com.alura.ProjetoAcelera.dto_form.form.VehicleForm;
 import com.alura.ProjetoAcelera.dto_form.dto.VehicleDto;
 import com.alura.ProjetoAcelera.models.Vehicle;
 import com.alura.ProjetoAcelera.repository.BrandRepository;
