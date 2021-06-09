@@ -66,4 +66,31 @@ public class BrandController {
         URI uri = uriBuilder.path("/brands/{id}").buildAndExpand(brand.getId()).toUri();
         return ResponseEntity.created(uri).body(new BrandDto(brand));
     }
+
+    @PutMapping("/{id}")
+    @Transactional
+    @CacheEvict(value = "brandsList", allEntries = true)
+    public ResponseEntity<BrandDto> updateBrand(@PathVariable Integer id,
+                                                @RequestBody  BrandForm form) {
+        Optional<Brand> optional = brandRepository.findById(id);
+        if (optional.isPresent()) {
+            Brand brand = form.update(id, brandRepository);
+            return ResponseEntity.ok(new BrandDto(brand));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    @CacheEvict(value = "brandsList", allEntries = true)
+    public ResponseEntity<?> remove(@PathVariable Integer id) {
+        Optional<Brand> optional = brandRepository.findById(id);
+        if (optional.isPresent()) {
+            brandRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
