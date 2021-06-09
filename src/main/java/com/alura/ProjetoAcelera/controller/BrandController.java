@@ -4,7 +4,6 @@ import com.alura.ProjetoAcelera.dto_form.form.BrandForm;
 import com.alura.ProjetoAcelera.models.Brand;
 import com.alura.ProjetoAcelera.repository.BrandRepository;
 
-import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,7 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
