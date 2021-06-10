@@ -11,26 +11,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VehicleDto {
+public class DetailVehicleDto {
 
 	private Long idVehicle;
 	private String brand;
 	private String model;
-	private Long years;
 	private Double price;
 
-	public VehicleDto(Vehicle vehicle) {
+	public DetailVehicleDto(Vehicle vehicle) {
 		this.idVehicle = vehicle.getIdVehicle();
 		this.brand = vehicle.getBrand().getName();
 		this.model = vehicle.getModel();
-		this.years = vehicle.getYears();
 		this.price = vehicle.getPrice();
 
 	}
 
-	public static Page<VehicleDto> converter(Page<Vehicle> vehicles) {
-		return vehicles.map(VehicleDto::new);
-
+	public static Page<DetailVehicleDto> converter(Page<Vehicle> vehicles) {
+		return vehicles.map(DetailVehicleDto::new);
 	}
-
 }
