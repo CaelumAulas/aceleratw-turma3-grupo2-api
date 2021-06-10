@@ -1,6 +1,7 @@
 package com.alura.ProjetoAcelera.controller;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -21,14 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.alura.ProjetoAcelera.dto_form.dto.BrandDto;
 import com.alura.ProjetoAcelera.dto_form.dto.DetailVehicleDto;
 import com.alura.ProjetoAcelera.dto_form.dto.VehicleDto;
 import com.alura.ProjetoAcelera.dto_form.form.VehicleForm;
+import com.alura.ProjetoAcelera.models.Brand;
 import com.alura.ProjetoAcelera.models.Vehicle;
 import com.alura.ProjetoAcelera.repository.BrandRepository;
 import com.alura.ProjetoAcelera.repository.VehicleRepository;
 
 @RestController
+//@CrossOrigin
 @RequestMapping("/vehicle")
 public class VehicleController {
 
@@ -53,10 +57,15 @@ public class VehicleController {
 	}
 
 	@GetMapping("/{id}")
-	public DetailVehicleDto detalhar(@PathVariable Long id) {
-		Vehicle vehicle = vehicleRepository.getOne(id);
-		return new DetailVehicleDto(vehicle);
+	public ResponseEntity<DetailVehicleDto> detalhar(@PathVariable Long id) {
+		Optional<Vehicle> vehicle = vehicleRepository.findById(id);
+		if(vehicle.isPresent()) {
+			return ResponseEntity.ok(new DetailVehicleDto(vehicle.get()));
+		}
+		return ResponseEntity.notFound().build();
 	}
+	
+	
 
 	@PostMapping
 	@Transactional
