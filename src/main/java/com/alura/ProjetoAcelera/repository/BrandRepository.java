@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BrandRepository extends JpaRepository<Brand, Long> {
     Page<Brand> findByName(String name, Pageable pages);
+    Brand findByName(String name);
 }

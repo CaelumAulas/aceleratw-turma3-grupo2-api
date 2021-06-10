@@ -1,6 +1,6 @@
 package com.alura.ProjetoAcelera.repository;
 
-import com.alura.ProjetoAcelera.models.Brand;
+import com.alura.ProjetoAcelera.models.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,14 +13,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 //@ActiveProfiles("test")
-public class BrandRepositoryTests {
-    @Autowired private BrandRepository brandRepository;
-
+public class UserRepositoryTests {
+    @Autowired private UserRepository userRepository;
     @Test
     public void findByNameTest(){
-        String name = "marca 1";
-        Brand brand = brandRepository.findByName(name);
-        Assert.assertNotNull(brand);
-        Assert.assertEquals(name, brand.getName());
+        String name = "luiza";
+        User user = userRepository.findByName(name);
+        Assert.assertNotNull(user);
+        Assert.assertEquals(name, user.getName());
     }
 }
