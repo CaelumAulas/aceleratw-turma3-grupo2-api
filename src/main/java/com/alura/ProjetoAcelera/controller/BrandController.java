@@ -20,6 +20,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/brands")
 public class BrandController {
     @Autowired
