@@ -74,7 +74,7 @@ public class VehicleController {
 		Vehicle vehicle = vehicleForm.convert(brandRepository);
 		vehicleRepository.save(vehicle);
 
-		URI uri = uriComponentsBuilder.path("/vehicle/{id}").buildAndExpand(vehicle.getIdVehicle()).toUri();
+		URI uri = uriComponentsBuilder.path("/vehicle/{id}").buildAndExpand(vehicle.getId()).toUri();
 
 		return ResponseEntity.created(uri).body(new VehicleDto(vehicle));
 	}

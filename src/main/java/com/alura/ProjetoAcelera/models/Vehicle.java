@@ -2,7 +2,6 @@ package com.alura.ProjetoAcelera.models;
 
 import java.util.Optional;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +23,7 @@ public class Vehicle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "vehicle_id")
-	private Long idVehicle;
+	private Long id;
 	@ManyToOne
 	private Brand brand;
 	/*@ManyToOne
@@ -36,8 +34,8 @@ public class Vehicle {
 	private Double price;
 	
 
-	public Vehicle(Long idVehicle, Brand brand, String model, Long years, Double price) {
-		this.idVehicle = idVehicle;
+	public Vehicle(Long id, Brand brand, String model, Long years, Double price) {
+		this.id = id;
 		this.brand = brand;
 		this.model = model;
 		this.years = years;
