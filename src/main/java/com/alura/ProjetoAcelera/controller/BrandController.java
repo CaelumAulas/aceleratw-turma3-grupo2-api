@@ -20,6 +20,7 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/brands")
 public class BrandController {
     @Autowired
@@ -44,7 +45,7 @@ public class BrandController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<BrandDto> getBrand(@PathVariable Integer id) {
+    public ResponseEntity<BrandDto> getBrand(@PathVariable Long id) {
         Optional<Brand> brand = brandRepository.findById(id);
         if (brand.isPresent()) {
             return ResponseEntity.ok(new BrandDto(brand.get()));
@@ -68,7 +69,7 @@ public class BrandController {
     @PutMapping("/{id}")
     @Transactional
     @CacheEvict(value = "brandsList", allEntries = true)
-    public ResponseEntity<BrandDto> updateBrand(@PathVariable Integer id,
+    public ResponseEntity<BrandDto> updateBrand(@PathVariable Long id,
                                                 @RequestBody  BrandForm form) {
         Optional<Brand> optional = brandRepository.findById(id);
         if (optional.isPresent()) {
@@ -82,7 +83,7 @@ public class BrandController {
     @DeleteMapping("/{id}")
     @Transactional
     @CacheEvict(value = "brandsList", allEntries = true)
-    public ResponseEntity<?> remove(@PathVariable Integer id) {
+    public ResponseEntity<?> remove(@PathVariable Long id) {
         Optional<Brand> optional = brandRepository.findById(id);
         if (optional.isPresent()) {
             brandRepository.deleteById(id);

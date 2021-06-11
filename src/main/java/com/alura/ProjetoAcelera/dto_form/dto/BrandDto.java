@@ -1,22 +1,19 @@
 package com.alura.ProjetoAcelera.dto_form.dto;
 
-import com.alura.ProjetoAcelera.models.Brand;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.alura.ProjetoAcelera.models.Brand;
 
 public class BrandDto {
-    private Integer id;
+    private Long id;
     private String name;
 
-    public BrandDto(Brand Brand){
-        this.id = Brand.getId();
-        this.name = Brand.getName();
+    public BrandDto(Brand brand){
+        this.id = brand.getId();
+        this.name = brand.getName();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

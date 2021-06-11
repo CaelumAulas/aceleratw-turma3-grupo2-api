@@ -3,8 +3,8 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users")
 @Data
+@Table(name="users")
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,5 +13,10 @@ public class User{
     private String password;
 
     public User(){}
+
+    public User(String name, String password){
+        this.name = name;
+        this.password = password;
+    }
 
 }
