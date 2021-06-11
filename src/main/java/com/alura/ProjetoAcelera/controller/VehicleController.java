@@ -32,7 +32,6 @@ import com.alura.ProjetoAcelera.repository.BrandRepository;
 import com.alura.ProjetoAcelera.repository.VehicleRepository;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/vehicle")
 public class VehicleController {
 

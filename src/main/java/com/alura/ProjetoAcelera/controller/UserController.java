@@ -20,7 +20,6 @@ import java.net.URI;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
     @Autowired private UserRepository userRepository;
