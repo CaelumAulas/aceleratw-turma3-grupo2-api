@@ -20,7 +20,7 @@ public class VehicleDto {
 	private Double price;
 
 	public VehicleDto(Vehicle vehicle) {
-		this.idVehicle = vehicle.getIdVehicle();
+		this.idVehicle = vehicle.getId();
 		this.brand = vehicle.getBrand().getName();
 		this.model = vehicle.getModel();
 		this.years = vehicle.getYears();

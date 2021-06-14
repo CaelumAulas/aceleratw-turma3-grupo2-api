@@ -10,7 +10,6 @@ import javax.persistence.*;
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="brand_id")
     private Long id;
     private String name;
 
