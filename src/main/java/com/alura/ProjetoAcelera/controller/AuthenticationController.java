@@ -3,6 +3,7 @@ package com.alura.ProjetoAcelera.controller;
 import com.alura.ProjetoAcelera.config.security.TokenService;
 import com.alura.ProjetoAcelera.dto_form.dto.TokenDto;
 import com.alura.ProjetoAcelera.dto_form.form.LoginForm;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
+@Api(tags = "Authentication")
 public class AuthenticationController {
 
 	@Autowired
