@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *#
 *.iml
 *.ipr
@@ -39,3 +40,8 @@ target
 secrets.yml
 .gradletasknamecache
 .sts4-cache
+=======
+/target/
+*.class
+./src/main/resources/application.properties
+>>>>>>> origin/main

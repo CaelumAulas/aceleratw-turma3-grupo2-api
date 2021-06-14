@@ -1,9 +1,5 @@
 package com.alura.ProjetoAcelera.repository;
 
-<<<<<<< HEAD
-import com.alura.ProjetoAcelera.models.User;
-=======
->>>>>>> origin/main
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,37 +10,32 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-<<<<<<< HEAD
-import java.util.Optional;
-=======
-import com.alura.ProjetoAcelera.models.User;
->>>>>>> origin/main
+import com.alura.ProjetoAcelera.models.Vehicle;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("test")
-public class UserRepositoryTests {
+//@ActiveProfiles("test")
+public class VehicleRepositoryTest {
 
 	@Autowired
-	private UserRepository userRepository;
-
+	VehicleRepository vehicleRepository;
+	
 	@Autowired
 	private TestEntityManager em;
-
+	
+	
 	@Test
-	public void findByNameTest() {
-		String name = "luiza";
-
-		User userTest = new User();
-		userTest.setName(name);
-		em.persist(userTest);
-
-		Optional<User> optionalUser = userRepository.findByName(name);
-		if (optionalUser.isPresent()) {
-			User user = optionalUser.get();
-			Assert.assertNotNull(user);
-			Assert.assertEquals(name, user.getName());
-		}
+	public void findByNameVehicle() {
+		String nameVehicle = "Palio";
+		
+		Vehicle vehicleTest = new Vehicle();
+		vehicleTest.setModel(nameVehicle);
+		em.persist(vehicleTest);
+		
+		Vehicle vehicle = vehicleRepository.findByModel(nameVehicle);
+		Assert.assertNotNull(nameVehicle);
+		Assert.assertEquals(nameVehicle, vehicle.getModel());
 	}
+
 }

@@ -19,9 +19,13 @@ public class Vehicle {
 
 	@ManyToOne
 	private Brand brand;
+<<<<<<< HEAD
 	/*@ManyToOne
 	private User idUser;*/
 
+=======
+	
+>>>>>>> origin/main
 	private String model;
 
 	private Long years;
@@ -33,5 +37,6 @@ public class Vehicle {
 		this.model = model;
 		this.years = years;
 		this.price = price;
+
 	}
 }
