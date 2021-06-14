@@ -13,12 +13,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.transaction.Transactional;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-// @ActiveProfiles("test")
-public class BrandControllerTest {
+@Transactional
+public class BrandControllerTestIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -69,7 +71,7 @@ public class BrandControllerTest {
     @Test
     public void updateBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/4");
+        URI uri = new URI("/brands/3");
         String json = "{\"name\":\"teste\"}";
 
         mockMvc
@@ -85,7 +87,7 @@ public class BrandControllerTest {
     @Test
     public void deleteBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/4");
+        URI uri = new URI("/brands/3");
 
         mockMvc
                 .perform(MockMvcRequestBuilders

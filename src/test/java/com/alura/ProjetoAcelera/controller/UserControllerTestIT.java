@@ -13,15 +13,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.transaction.Transactional;
 import java.net.URI;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-// @ActiveProfiles("test")
-public class UserControllerTest
+@Transactional
+public class UserControllerTestIT
 {
-
         @Autowired
         private MockMvc mockMvc;
         @Test
@@ -70,7 +70,7 @@ public class UserControllerTest
         @Test
         public void updateUserTest()
                 throws Exception {
-            URI uri = new URI("/users/6");
+            URI uri = new URI("/users/1");
             String json = "{\"name\":\"teste\",\"password\":\"12345\"}";
 
             mockMvc
@@ -86,7 +86,7 @@ public class UserControllerTest
         @Test
         public void deleteUserTest()
                 throws Exception {
-            URI uri = new URI("/users/6");
+            URI uri = new URI("/users/1");
 
             mockMvc
                     .perform(MockMvcRequestBuilders
