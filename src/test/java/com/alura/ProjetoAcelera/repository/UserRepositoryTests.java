@@ -1,7 +1,5 @@
 package com.alura.ProjetoAcelera.repository;
 
-import com.alura.ProjetoAcelera.models.Brand;
-import com.alura.ProjetoAcelera.models.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.alura.ProjetoAcelera.models.User;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

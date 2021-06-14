@@ -26,8 +26,6 @@ public class Vehicle {
 	private Long id;
 	@ManyToOne
 	private Brand brand;
-	/*@ManyToOne
-	private User idUser;*/
 	
 	private String model;
 	private Long years;
@@ -40,6 +38,7 @@ public class Vehicle {
 		this.model = model;
 		this.years = years;
 		this.price = price;
+
 	}
 
 
