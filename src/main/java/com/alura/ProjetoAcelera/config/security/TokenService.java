@@ -1,6 +1,7 @@
 package com.alura.ProjetoAcelera.config.security;
 
 import com.alura.ProjetoAcelera.models.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,4 +33,17 @@ public class TokenService {
 				.compact();
 	}
 
+	public boolean isTokenValid(String token) {
+		try {
+			Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public Long getUserId(String token) {
+		Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
+		return Long.parseLong(claims.getSubject());
+	}
 }
