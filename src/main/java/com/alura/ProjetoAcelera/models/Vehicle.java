@@ -19,7 +19,7 @@ public class Vehicle {
 
 	@ManyToOne
 	private Brand brand;
-	
+
 	private String model;
 
 	private Long years;
