@@ -18,39 +18,49 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
 public class UserRepositoryTests {
-    @Autowired private UserRepository userRepository;
-    @Autowired private TestEntityManager em;
 
-    @Test
-    public void findByNameTest(){
-        String name = "luiza";
+	@Autowired
+	private UserRepository userRepository;
 
-        User userTest = new User();
-        userTest.setName(name);
-        em.persist(userTest);
+	@Autowired
+	private TestEntityManager em;
 
-        User user = userRepository.findByName(name);
-        Assert.assertNotNull(user);
-        Assert.assertEquals(name, user.getName());
-    }
+	@Test
+	public void findByNameTest() {
+		String name = "luiza";
 
-    @Test
-    public void doesntFindByNameTest(){
-        String name = "user que nao existe";
+		User userTest = new User();
+		userTest.setName(name);
+		em.persist(userTest);
 
-        User user = userRepository.findByName(name);
-        Assert.assertNull(user);
-    }
+		Optional<User> optionalUser = userRepository.findByName(name);
+		if (optionalUser.isPresent()) {
+			User user = optionalUser.get();
+			Assert.assertNotNull(user);
+			Assert.assertEquals(name, user.getName());
+		}
+	}
 
-    @Test
-    public void findByIdTest(){
-        String name = "luiza";
+	@Test
+	public void doesntFindByNameTest() {
+		String name = "user que nao existe";
 
-        User userTest = new User();
-        userTest.setName(name);
-        em.persist(userTest);
+		Optional<User> optionalUser = userRepository.findByName(name);
+		if (optionalUser.isEmpty()) {
 
-        Optional<User> user = userRepository.findById(userTest.getId());
-        Assert.assertEquals(user.get(), userTest);
-    }
+			Assert.assertTrue(true);
+		}
+	}
+
+	@Test
+	public void findByIdTest() {
+		String name = "luiza";
+
+		User userTest = new User();
+		userTest.setName(name);
+		em.persist(userTest);
+
+		Optional<User> user = userRepository.findById(userTest.getId());
+		Assert.assertEquals(user.get(), userTest);
+	}
 }
