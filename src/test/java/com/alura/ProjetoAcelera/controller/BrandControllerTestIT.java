@@ -1,6 +1,7 @@
 package com.alura.ProjetoAcelera.controller;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +26,20 @@ public class BrandControllerTestIT {
     @Autowired
     private MockMvc mockMvc;
 
+    private URI uri;
+    private String json;
+
+    public void initializeURI(String id) throws URISyntaxException {
+        this.uri = new URI("/brands/".concat(id));
+    }
+    public void initializeContent(){
+        this.json = "{\"name\":\"teste\"}";
+    }
+
     @Test
     public void getAllBrandsWithoutParameterNameTest()
             throws Exception {
-        URI uri = new URI("/brands");
+        initializeURI("");
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -41,7 +52,7 @@ public class BrandControllerTestIT {
     @Test
     public void getBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/1");
+        initializeURI("1");
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -54,7 +65,7 @@ public class BrandControllerTestIT {
     @Test
     public void doesntGetBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/100000");
+        initializeURI("100000");
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -67,8 +78,8 @@ public class BrandControllerTestIT {
     @Test
     public void registerBrandTest()
             throws Exception {
-        URI uri = new URI("/brands");
-        String json = "{\"name\":\"teste\"}";
+        initializeURI("");
+        initializeContent();
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -84,8 +95,8 @@ public class BrandControllerTestIT {
     @Test
     public void updateBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/3");
-        String json = "{\"name\":\"teste\"}";
+        initializeURI("3");
+        initializeContent();
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -100,8 +111,8 @@ public class BrandControllerTestIT {
     @Test
     public void doesntUpdateBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/1000000");
-        String json = "{\"name\":\"teste\"}";
+        initializeURI("1000000000");
+        initializeContent();
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -116,7 +127,7 @@ public class BrandControllerTestIT {
     @Test
     public void deleteBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/3");
+        initializeURI("3");
 
         mockMvc
                 .perform(MockMvcRequestBuilders
@@ -129,7 +140,7 @@ public class BrandControllerTestIT {
     @Test
     public void doesntDeleteBrandTest()
             throws Exception {
-        URI uri = new URI("/brands/100000");
+        initializeURI("10000000");
 
         mockMvc
                 .perform(MockMvcRequestBuilders
