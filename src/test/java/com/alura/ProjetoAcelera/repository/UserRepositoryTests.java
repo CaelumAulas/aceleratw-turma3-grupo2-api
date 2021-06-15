@@ -41,23 +41,26 @@ public class UserRepositoryTests {
 		}
 	}
 
-    @Test
-    public void doesntFindByNameTest(){
-        String name = "user que nao existe";
+	@Test
+	public void doesntFindByNameTest() {
+		String name = "user que nao existe";
 
-        User user = userRepository.findByName(name);
-        Assert.assertNull(user);
-    }
+		Optional<User> optionalUser = userRepository.findByName(name);
+		if (optionalUser.isEmpty()) {
 
-    @Test
-    public void findByIdTest(){
-        String name = "luiza";
+			Assert.assertTrue(true);
+		}
+	}
 
-        User userTest = new User();
-        userTest.setName(name);
-        em.persist(userTest);
+	@Test
+	public void findByIdTest() {
+		String name = "luiza";
 
-        Optional<User> user = userRepository.findById(userTest.getId());
-        Assert.assertEquals(user.get(), userTest);
-    }
+		User userTest = new User();
+		userTest.setName(name);
+		em.persist(userTest);
+
+		Optional<User> user = userRepository.findById(userTest.getId());
+		Assert.assertEquals(user.get(), userTest);
+	}
 }
