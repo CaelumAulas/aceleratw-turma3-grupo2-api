@@ -53,7 +53,7 @@ public class UpdateVehicleForm {
 	}
 
 	public Vehicle atualizar(Long id, VehicleRepository vehicleRepository) {
-		Vehicle vehicle = vehicleRepository.getOne(id);
+		Vehicle vehicle = vehicleRepository.getById(id);
 		vehicle.setModel(this.model);
 		vehicle.setYears(this.years);
 		vehicle.setPrice(this.price);

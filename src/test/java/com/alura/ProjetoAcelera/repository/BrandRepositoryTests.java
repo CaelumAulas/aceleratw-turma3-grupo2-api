@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -31,4 +33,25 @@ public class BrandRepositoryTests {
         Assert.assertNotNull(brand);
         Assert.assertEquals(name, brand.getName());
     }
+
+    @Test
+    public void doesntFindByNameTest(){
+        String name = "marca que nao existe";
+
+        Brand brand = brandRepository.findByName(name);
+        Assert.assertNull(brand);
+    }
+
+    @Test
+    public void findByIdTest(){
+        String name = "marca 1";
+
+        Brand brandTest = new Brand();
+        brandTest.setName(name);
+        em.persist(brandTest);
+
+        Optional<Brand> brand = brandRepository.findById(brandTest.getId());
+        Assert.assertEquals(brand.get(), brandTest);
+    }
+
 }

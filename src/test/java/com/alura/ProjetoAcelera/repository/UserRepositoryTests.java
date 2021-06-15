@@ -1,6 +1,5 @@
 package com.alura.ProjetoAcelera.repository;
 
-
 import com.alura.ProjetoAcelera.models.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,4 +40,24 @@ public class UserRepositoryTests {
 			Assert.assertEquals(name, user.getName());
 		}
 	}
+
+    @Test
+    public void doesntFindByNameTest(){
+        String name = "user que nao existe";
+
+        User user = userRepository.findByName(name);
+        Assert.assertNull(user);
+    }
+
+    @Test
+    public void findByIdTest(){
+        String name = "luiza";
+
+        User userTest = new User();
+        userTest.setName(name);
+        em.persist(userTest);
+
+        Optional<User> user = userRepository.findById(userTest.getId());
+        Assert.assertEquals(user.get(), userTest);
+    }
 }
