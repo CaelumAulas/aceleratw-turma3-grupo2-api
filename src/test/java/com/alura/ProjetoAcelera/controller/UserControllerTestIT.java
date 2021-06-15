@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.transaction.Transactional;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,11 +25,21 @@ public class UserControllerTestIT
 {
         @Autowired
         private MockMvc mockMvc;
+
+        private URI uri;
+        private String json;
+
+        public void initializeURI(String id) throws URISyntaxException {
+            this.uri = new URI("/users/".concat(id));
+        }
+        public void initializeContent(){
+            this.json = "{\"name\":\"teste\",\"password\":\"12345\"}";
+        }
+
         @Test
         public void getAllUsersWithoutParameterNameTest()
                 throws Exception {
-            URI uri = new URI("/users");
-
+            initializeURI("");
             mockMvc
                     .perform(MockMvcRequestBuilders
                             .get(uri))
@@ -40,8 +51,7 @@ public class UserControllerTestIT
        @Test
         public void getUserTest()
                 throws Exception {
-            URI uri = new URI("/users/1");
-
+            initializeURI("1");
             mockMvc
                     .perform(MockMvcRequestBuilders
                             .get(uri))
@@ -53,8 +63,7 @@ public class UserControllerTestIT
     @Test
     public void doesntGetUserTest()
             throws Exception {
-        URI uri = new URI("/users/100000");
-
+        initializeURI("1000000");
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get(uri))
@@ -66,9 +75,8 @@ public class UserControllerTestIT
        @Test
         public void registerUserTest()
                 throws Exception {
-            URI uri = new URI("/users");
-            String json = "{\"name\":\"teste\",\"password\":\"12345\"}";
-
+           initializeURI("");
+           initializeContent();
             mockMvc
                     .perform(MockMvcRequestBuilders
                             .post(uri)
@@ -83,9 +91,9 @@ public class UserControllerTestIT
         @Test
         public void updateUserTest()
                 throws Exception {
-            URI uri = new URI("/users/1");
-            String json = "{\"name\":\"teste\",\"password\":\"12345\"}";
 
+            initializeURI("1");
+            initializeContent();
             mockMvc
                     .perform(MockMvcRequestBuilders
                             .put(uri)
@@ -99,9 +107,8 @@ public class UserControllerTestIT
     @Test
     public void doesntUpdateUserTest()
             throws Exception {
-        URI uri = new URI("/users/1000000");
-        String json = "{\"name\":\"teste\",\"password\":\"12345\"}";
-
+        initializeURI("10000000");
+        initializeContent();
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .put(uri)
@@ -115,8 +122,7 @@ public class UserControllerTestIT
         @Test
         public void deleteUserTest()
                 throws Exception {
-            URI uri = new URI("/users/1");
-
+            initializeURI("1");
             mockMvc
                     .perform(MockMvcRequestBuilders
                             .delete(uri))
@@ -128,8 +134,7 @@ public class UserControllerTestIT
     @Test
     public void doesntDeleteUserTest()
             throws Exception {
-        URI uri = new URI("/users/100000");
-
+        initializeURI("1000000");
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .delete(uri))
