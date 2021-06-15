@@ -1,6 +1,5 @@
 package com.alura.ProjetoAcelera.repository;
 
-import com.alura.ProjetoAcelera.models.Brand;
 import com.alura.ProjetoAcelera.models.User;
 import org.junit.Assert;
 import org.junit.Test;
