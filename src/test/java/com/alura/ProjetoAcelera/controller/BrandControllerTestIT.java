@@ -26,7 +26,7 @@ public class BrandControllerTestIT {
     private MockMvc mockMvc;
 
     @Test
-    public void getAllBrandsTest()
+    public void getAllBrandsWithoutParameterNameTest()
             throws Exception {
         URI uri = new URI("/brands");
 
@@ -49,6 +49,19 @@ public class BrandControllerTestIT {
                 .andExpect(MockMvcResultMatchers
                         .status()
                         .is(200));
+    }
+
+    @Test
+    public void doesntGetBrandTest()
+            throws Exception {
+        URI uri = new URI("/brands/100000");
+
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get(uri))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .is(404));
     }
 
     @Test
@@ -85,6 +98,22 @@ public class BrandControllerTestIT {
     }
 
     @Test
+    public void doesntUpdateBrandTest()
+            throws Exception {
+        URI uri = new URI("/brands/1000000");
+        String json = "{\"name\":\"teste\"}";
+
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .put(uri)
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .is(404));
+    }
+
+    @Test
     public void deleteBrandTest()
             throws Exception {
         URI uri = new URI("/brands/3");
@@ -95,5 +124,18 @@ public class BrandControllerTestIT {
                 .andExpect(MockMvcResultMatchers
                         .status()
                         .is(200));
+    }
+
+    @Test
+    public void doesntDeleteBrandTest()
+            throws Exception {
+        URI uri = new URI("/brands/100000");
+
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .delete(uri))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .is(404));
     }
 }

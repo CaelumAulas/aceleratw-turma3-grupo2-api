@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -31,5 +33,25 @@ public class UserRepositoryTests {
         User user = userRepository.findByName(name);
         Assert.assertNotNull(user);
         Assert.assertEquals(name, user.getName());
+    }
+
+    @Test
+    public void doesntFindByNameTest(){
+        String name = "user que nao existe";
+
+        User user = userRepository.findByName(name);
+        Assert.assertNull(user);
+    }
+
+    @Test
+    public void findByIdTest(){
+        String name = "luiza";
+
+        User userTest = new User();
+        userTest.setName(name);
+        em.persist(userTest);
+
+        Optional<User> user = userRepository.findById(userTest.getId());
+        Assert.assertEquals(user.get(), userTest);
     }
 }

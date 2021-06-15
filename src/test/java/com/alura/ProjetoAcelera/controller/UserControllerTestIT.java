@@ -25,7 +25,7 @@ public class UserControllerTestIT
         @Autowired
         private MockMvc mockMvc;
         @Test
-        public void getAllUsersTest()
+        public void getAllUsersWithoutParameterNameTest()
                 throws Exception {
             URI uri = new URI("/users");
 
@@ -38,7 +38,7 @@ public class UserControllerTestIT
         }
 
        @Test
-        public void getUserTes()
+        public void getUserTest()
                 throws Exception {
             URI uri = new URI("/users/1");
 
@@ -49,6 +49,19 @@ public class UserControllerTestIT
                             .status()
                             .is(200));
         }
+
+    @Test
+    public void doesntGetUserTest()
+            throws Exception {
+        URI uri = new URI("/users/100000");
+
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .get(uri))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .is(404));
+    }
 
        @Test
         public void registerUserTest()
@@ -83,6 +96,22 @@ public class UserControllerTestIT
                             .is(200));
         }
 
+    @Test
+    public void doesntUpdateUserTest()
+            throws Exception {
+        URI uri = new URI("/users/1000000");
+        String json = "{\"name\":\"teste\",\"password\":\"12345\"}";
+
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .put(uri)
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .is(404));
+    }
+
         @Test
         public void deleteUserTest()
                 throws Exception {
@@ -95,4 +124,17 @@ public class UserControllerTestIT
                             .status()
                             .is(200));
         }
+
+    @Test
+    public void doesntDeleteUserTest()
+            throws Exception {
+        URI uri = new URI("/users/100000");
+
+        mockMvc
+                .perform(MockMvcRequestBuilders
+                        .delete(uri))
+                .andExpect(MockMvcResultMatchers
+                        .status()
+                        .is(404));
+    }
 }
