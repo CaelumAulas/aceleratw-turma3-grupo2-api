@@ -5,6 +5,7 @@ import com.alura.ProjetoAcelera.dto_form.dto.TokenDto;
 import com.alura.ProjetoAcelera.dto_form.form.LoginForm;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/auth")
 @Api(tags = "Authentication")
+@Profile("prod")
 public class AuthenticationController {
 
 	@Autowired

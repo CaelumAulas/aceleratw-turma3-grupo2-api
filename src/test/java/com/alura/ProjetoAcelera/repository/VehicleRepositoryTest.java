@@ -15,7 +15,7 @@ import com.alura.ProjetoAcelera.models.Vehicle;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 public class VehicleRepositoryTest {
 
 	@Autowired
