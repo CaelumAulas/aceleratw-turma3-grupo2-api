@@ -1,6 +1,7 @@
 package com.alura.ProjetoAcelera.controller;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.transaction.Transactional;
 
@@ -26,6 +27,19 @@ public class VehicleControllerTest {
 
 	  @Autowired
       private MockMvc mockMvc;
+
+    private URI uri;
+    private String json;
+
+    public void initializeURI(String id) throws URISyntaxException {
+        this.uri = new URI("/vehicle/".concat(id));
+    }
+    public void initializeContent(){
+        this.json =  "{ \"idVehicle\":20 , \"nameBrand\":\"Volkswagen\", \"model\":\"teste\",\"years\":2020 ,\"price\":10000.00 }";
+    }
+
+
+
       @Test
       public void getAllVehicleTest()
               throws Exception {
@@ -42,7 +56,7 @@ public class VehicleControllerTest {
      @Test
       public void getVehicleTest()
               throws Exception {
-          URI uri = new URI("/vehicle/1");
+         initializeURI("1");
 
           mockMvc
                   .perform(MockMvcRequestBuilders
@@ -55,9 +69,9 @@ public class VehicleControllerTest {
      @Test
       public void registerVehicleTest()
               throws Exception {
-         URI uri = new URI("/vehicle");
-         String json = "{ \"idVehicle\":20 , \"nameBrand\":\"marca 1\", \"model\":\"teste\",\"years\":2020 ,\"price\":10000 }";
 
+         initializeURI("");
+         initializeContent();
          mockMvc
                  .perform(MockMvcRequestBuilders
                          .post(uri)
@@ -72,8 +86,9 @@ public class VehicleControllerTest {
       @Test
       public void updateVehicleTest()
               throws Exception {
-          URI uri = new URI("/vehicle/1");
-          String json = "{ \"nameBrand\":\"teste\",  \"model\":\"teste\",\"years\":2020 ,\"price\": 10000 }";
+
+          initializeURI("1");
+          initializeContent();
 
           mockMvc
                   .perform(MockMvcRequestBuilders
@@ -88,8 +103,8 @@ public class VehicleControllerTest {
       @Test
       public void deleteVehicleTest()
               throws Exception {
-          URI uri = new URI("/vehicle/1");
 
+          initializeURI("1");
           mockMvc
                   .perform(MockMvcRequestBuilders
                           .delete(uri))
