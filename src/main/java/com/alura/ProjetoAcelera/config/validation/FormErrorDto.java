@@ -1,20 +1,22 @@
 package com.alura.ProjetoAcelera.config.validation;
 
 public class FormErrorDto {
-    private String campo;
-    private String erro;
 
-    public FormErrorDto(String campo, String erro) {
-        this.campo = campo;
-        this.erro = erro;
-    }
+	private String field;
 
-    public String getCampo() {
-        return campo;
-    }
+	private String error;
 
-    public String getErro() {
-        return erro;
-    }
+	public FormErrorDto(String field, String error) {
+		this.field = field;
+		this.error = error;
+	}
+
+	public String getField() {
+		return field;
+	}
+
+	public String getError() {
+		return error;
+	}
 
 }
