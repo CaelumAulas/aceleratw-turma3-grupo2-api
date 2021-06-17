@@ -24,7 +24,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/auth")
 @Api(tags = "Authentication")
-@Profile("prod")
+@Profile({"prod", "dev"})
 public class AuthenticationController {
 
 	@Autowired
