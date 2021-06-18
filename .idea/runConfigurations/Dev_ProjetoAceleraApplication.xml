@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="ProjetoAceleraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+  <configuration default="false" name="Dev-ProjetoAceleraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="ProjetoAcelera" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.alura.ProjetoAcelera.ProjetoAceleraApplication" />
-    <option name="VM_PARAMETERS" value="-Dspring.profiles.active=prod" />
+    <option name="VM_PARAMETERS" value="-Dspring.profiles.active=dev" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="NONE" />
     <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
